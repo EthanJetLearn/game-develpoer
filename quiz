@@ -1,0 +1,40 @@
+import pgzrun
+TITLE="quiz"
+WIDTH=680
+HEIGHT=680
+scroll_box=Rect(0,0,680,100)
+Qb=Rect(10,120,500,150)
+box_1=Rect(10,290,220,150)
+box_2=Rect(270,290,220,150)
+box_3=Rect(10,460,220,150)
+box_4=Rect(270,460,220,150)
+Tb=Rect(520,120,140,150)
+Sb=Rect(520,290,140,300)
+answer_box=[box_1,box_2,box_3,box_4]
+score=0
+total_time=10
+qfile="questions.txt"
+questions=[]
+gameover=False
+count=0
+curq=0
+
+def draw():
+    screen.clear()
+    screen.fill("blue")
+    screen.draw.filled_rect(scroll_box,"orange")
+    screen.draw.filled_rect(Qb,"orange")
+    for i in answer_box:
+        screen.draw.filled_rect(i,"orange")
+    screen.draw.filled_rect(Tb,"sky blue")
+    screen.draw.filled_rect(Sb,"green")
+    message=f"Welcome to quiz master. You are at Q:{curq} of {count}"
+    screen.draw.textbox(message,scroll_box,color="white")     
+    screen.draw.textbox(str(total_time),Tb,color="black")
+    screen.draw.textbox("skip",Sb,color="black",angle=-90)
+
+def update():
+    scroll_box.x-=2
+    if scroll_box.right<0:
+        scroll_box.left=WIDTH   
+pgzrun.go()    
